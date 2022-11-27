@@ -56,13 +56,18 @@ fun Greeting(name: String) {
 @Composable
 fun BirthdayGreetingWithText(message: String) {
     Text(
-        text = message
+        text = message,
+        fontSize = 36.sp
     )
 }
 
 // 7. 텍스트 정렬 및 패딩 추가
 @Composable
 fun BirthdayGreetingWithText(message: String, from: String) {
+    Text(
+        text = from,
+        fontSize = 24.sp
+    )
     // Create a column so that texts don't overlap
     Column { }
 }
@@ -77,6 +82,7 @@ fun BirthdayGreetingWithImage(message: String, from: String) { }
 private fun BirthdayCardPreview() {
     HappyBirthdayTheme() {
         BirthdayGreetingWithText( "Happy Birthday Sam!")
+        BirthdayGreetingWithText( "Happy Birthday Sam!", "- from Emma")
     }
 }
 
