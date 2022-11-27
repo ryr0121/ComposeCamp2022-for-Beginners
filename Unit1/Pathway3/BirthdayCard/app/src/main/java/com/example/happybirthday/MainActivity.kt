@@ -34,42 +34,59 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.happybirthday.ui.theme.HappyBirthdayTheme
+import androidx.compose.foundation.layout.Column
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            HappyBirthdayTheme() {
+            HappyBirthdayTheme {
+                // A surface container that uses the 'background' color from the theme
                 Surface(color = MaterialTheme.colors.background) {
-                    
+                    BirthdayGreetingWithText( "Happy Birthday Sam!", "- from Emma")
                 }
             }
         }
     }
 }
 
-@Composable
-fun Greeting(name: String) {
-    Text(text = "Hello $name!")
-}
+//@Composable
+//fun Greeting(name: String) {
+//    Text(text = "Hello $name!")
+//}
 
-@Composable
-fun BirthdayGreetingWithText(message: String) {
-    Text(
-        text = message,
-        fontSize = 36.sp
-    )
-}
+//@Composable
+//fun BirthdayGreetingWithText(message: String) {
+//    Text(
+//        text = message,
+//        fontSize = 36.sp
+//    )
+//}
 
 // 7. 텍스트 정렬 및 패딩 추가
 @Composable
 fun BirthdayGreetingWithText(message: String, from: String) {
-    Text(
-        text = from,
-        fontSize = 24.sp
-    )
+//    Row{
+//        Text(
+//            text = message,
+//            fontSize = 36.sp,
+//        )
+//        Text(
+//            text = from,
+//            fontSize = 24.sp,
+//        )
+//    }
     // Create a column so that texts don't overlap
-    Column { }
+    Column {
+        Text(
+            text = message,
+            fontSize = 36.sp,
+        )
+        Text(
+            text = from,
+            fontSize = 24.sp,
+        )
+    }
 }
 
 // 5. Box 레이아웃 추
@@ -81,8 +98,8 @@ fun BirthdayGreetingWithImage(message: String, from: String) { }
 @Composable
 private fun BirthdayCardPreview() {
     HappyBirthdayTheme() {
-        BirthdayGreetingWithText( "Happy Birthday Sam!")
-        BirthdayGreetingWithText( "Happy Birthday Sam!", "- from Emma")
+//        BirthdayGreetingWithText( "Happy Birthday Sam!")
+//        BirthdayGreetingWithText( "Happy Birthday Sam!", "- from Emma")
     }
 }
 
