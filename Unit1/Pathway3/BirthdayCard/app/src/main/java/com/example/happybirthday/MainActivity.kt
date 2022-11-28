@@ -34,49 +34,73 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.happybirthday.ui.theme.HappyBirthdayTheme
+import androidx.compose.foundation.layout.Column
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            HappyBirthdayTheme() {
+            HappyBirthdayTheme {
+                // A surface container that uses the 'background' color from the theme
                 Surface(color = MaterialTheme.colors.background) {
-                    
+//                    BirthdayGreetingWithText( "Happy Birthday Sam!", "- from Emma")
+                    BirthdayGreetingWithImage( stringResource(R.string.happy_birthday_text), stringResource(
+                                            R.string.signature_text))
                 }
             }
         }
     }
 }
 
-@Composable
-fun Greeting(name: String) {
-    Text(text = "Hello $name!")
-}
-
-@Composable
-fun BirthdayGreetingWithText(message: String) {
-    Text(
-        text = message
-    )
-}
-
 // 7. 텍스트 정렬 및 패딩 추가
 @Composable
 fun BirthdayGreetingWithText(message: String, from: String) {
     // Create a column so that texts don't overlap
-    Column { }
+    Column {
+        Text(
+            text = message,
+            fontSize = 36.sp,
+            modifier = Modifier
+                .fillMaxWidth()
+                .wrapContentWidth(Alignment.CenterHorizontally)
+                .padding(start = 16.dp, top = 16.dp)
+        )
+        Text(
+            text = from,
+            fontSize = 24.sp,
+            modifier = Modifier
+                .fillMaxWidth()
+                .wrapContentWidth(Alignment.CenterHorizontally)
+                .padding(start = 16.dp, end = 16.dp)
+        )
+    }
 }
 
-// 5. Box 레이아웃 추
+// 5. Box 레이아웃 추가
 @Composable
-fun BirthdayGreetingWithImage(message: String, from: String) { }
+fun BirthdayGreetingWithImage(message: String, from: String) {
+    val image = painterResource(R.drawable.androidparty)
+    Box {
+        Image(
+            painter = image,
+            contentDescription = null,
+            modifier = Modifier
+                .fillMaxHeight()
+                .fillMaxWidth(),
+            contentScale = ContentScale.Crop
+        )
+        BirthdayGreetingWithText(message = message, from = from)
+    }
+}
 
 // 4. 이미지 컴포저블 추가
-@Preview(showBackground = true)
+@Preview(showBackground = false)
 @Composable
 private fun BirthdayCardPreview() {
     HappyBirthdayTheme() {
-        BirthdayGreetingWithText( "Happy Birthday Sam!")
+//        BirthdayGreetingWithText( "Happy Birthday Sam!")
+//        BirthdayGreetingWithText( "Happy Birthday Sam!", "- from Emma")
+        BirthdayGreetingWithImage( "Happy Birthday Sam!", "- from Emma")
     }
 }
 
